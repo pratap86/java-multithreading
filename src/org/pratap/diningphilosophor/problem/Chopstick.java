@@ -24,7 +24,7 @@ public class Chopstick {
 	}
 
 	/**
-	 * Two Philosopher are competing with chopstick, pickup() method try to picked up chopstick within a time interval, otherwise return false.
+	 * Two Philosopher are competing with chopsticks, pickup() method try to picked up chopstick within a time interval, otherwise return false.
 	 * @param philosopher
 	 * @param state
 	 * @return
