@@ -2,3 +2,4 @@
 .settings
 bin/
 .DS_Store
+ws/
