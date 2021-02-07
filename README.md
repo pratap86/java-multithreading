@@ -1,4 +1,4 @@
-# java-multithreading
+# Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce and Parallelization
 
 ## Thread Termination - Why & When
