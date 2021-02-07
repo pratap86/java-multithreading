@@ -42,3 +42,21 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
 - Objects - stay as long as we have a referenced to them.
 - Members of classes - exist as long as their parent objects exist
 - static variables - stay forever
+## Atomic Operation
+- An operation or a set of operations is considered atomic, if it appears to the rest of the system as if it occurred at once.
+-  Single step - "all or nothing"
+- No intermediate states
+  - item++ Not an atomic operation, internally its perform 3 operations
+    - get current value of items
+    - Increment current value by 1
+    - stores the result into items
+    - eg:
+    
+    ```
+    items++ operation
+    (int item = 0;)
+    1. currentValue <- 0
+    2. newValue <- currentValue + 1 = 1
+    3. item <- newValue = 1
+    ```
+  
