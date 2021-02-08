@@ -60,13 +60,13 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
     3. item <- newValue = 1
     ```
     
- -  Which operations are atomic?
-  - All reference assignments are atomic.
-  - getters & setters
-  - All assignments to primitive types are safe except long and double
-  - That means reading from, and writing to the following types;
-    - int, short, byte, float, char, boolean
-  safely, no need to synchronization.
+ - Which operations are atomic?
+    - All reference assignments are atomic.
+    - getters & setters
+    - All assignments to primitive types are safe except long and double
+    - That means reading from, and writing to the following types;
+      - int, short, byte, float, char, boolean
+      safely, no need to synchronization.
   - use volatile wrt long and double, bcz long & double are 64 bits
   - classes in the java.util.concurrent.atomic
   
