@@ -78,4 +78,11 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
     - The core of the problem is non atomic operations performed on the shared resource.
     - Synchronized solves both Race Condition and Data Race. But has a performance penality.
     - Volatile solves all data races by guaranteeing order.
-  
+  ## Locking Strategies & Deadlocks
+    - Fine-Grained Locking - use synchronized at block-level 
+    - Coarse-Grained Locking - use synchronized at method-level
+    - <b>Conditions for Deadlock</b>
+      - Mutual Exclusion - Only one thread can have exclusive access to a resource.
+      - Hold & Wait - At least one thread is holding a resource and is waiting for another resource.
+      - Non-preemptive allocation - A resource is released only after the thread is done using it.
+      - Circular wait - A chain of at least two threads each one is holding one resource and waiting for another resource.
