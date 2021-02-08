@@ -87,3 +87,5 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
       - Hold & Wait - At least one thread is holding a resource and is waiting for another resource.
       - Non-preemptive allocation - A resource is released only after the thread is done using it.
       - Circular wait - A chain of at least two threads each one is holding one resource and waiting for another resource.
+   - If any one of above condition is met, than deadlock happened.
+   - <b>Deadlock Solution</b> use locking in same order
