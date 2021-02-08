@@ -59,4 +59,23 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
     2. newValue <- currentValue + 1 = 1
     3. item <- newValue = 1
     ```
+    
+ -  Which operations are atomic?
+  - All reference assignments are atomic.
+  - getters & setters
+  - All assignments to primitive types are safe except long and double
+  - That means reading from, and writing to the following types;
+    - int, short, byte, float, char, boolean
+  safely, no need to synchronization.
+  - use volatile wrt long and double, bcz long & double are 64 bits
+  - classes in the java.util.concurrent.atomic
+  
+  ## Race condition & Data Race
+  - Race Condition
+    - Condition when multiple threads are accessing a shared resource.
+    - At least one thread is modifying the resource.
+    - The timing of thread's scheduling may cause incorrect results.
+    - The core of the problem is non atomic operations performed on the shared resource.
+    - Synchronized solves both Race Condition and Data Race. But has a performance penality.
+    - Volatile solves all data races by guaranteeing order.
   
