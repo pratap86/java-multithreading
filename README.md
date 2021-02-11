@@ -89,3 +89,103 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
       - Circular wait - A chain of at least two threads each one is holding one resource and waiting for another resource.
    - If any one of above condition is met, than deadlock happened.
    - <b>Deadlock Solution</b> solved by avoding circular wait & hold.
+   
+   ## Advanced Locking
+   - java.util.concurrent.locks.ReentrantLock
+      - ReentrantLock.lockInterruptibly()
+      - ReentrantLock.tryLock()
+      - <b>ReentrantLock</b>
+        - Works like the synchronized keyword applied on an object
+        - Requires explicitly locking & unlocking
+      
+ ```ruby
+      Object lockObject = new Object();
+      Resource resource = new Resource();
+      ...
+      ...
+      public void method(){
+        synchronized(lockObject){
+          ...
+          use(resource);
+        }//synchronized lock terminates here
+      }
+      
+      // ReentrantLock
+      Lock lockObject = new ReentrantLock();
+      Resource resource = new Resource();
+      ...
+      ...
+      public void method(){
+        lockObject.lock();
+        ...
+        use(resource);
+        lockObject.unlock();
+      }
+      
+      // ReentrantLock Disadvantages
+      1.
+      Lock lockObject = new ReentrantLock();
+      ...
+      ...
+      public int use(){
+        lockObject.lock();
+        ...
+        return value;
+        //lockObject.unlock(); DeadLock
+      }
+      
+      2.
+      Lock lockObject = new ReentrantLock();
+      ...
+      ...
+      public void use() throws SomeException {
+        lockObject.lock();
+        throwExceptionMethod();
+        lockObject.unlock();//DeadLock situation
+      }
+      
+      3. Solution
+      Lock lockObject = new ReentrantLock();
+      ...
+      ...
+      public int use() throws SomeException {
+        lockObject.lock();
+        try{
+          someOperations();
+          return value;
+          } 
+          finally{
+            objectLock.unlock();
+          }
+      }
+      
+```
+
+- Queries methods - For testing
+  - getQueuedThreads() - Return a list of threads waiting to acquire a lock
+  - getOwner() - Return the thread that currently owns the lock
+  - isHeldByCurrentThread() - Queries if the lock is held by the current thread
+  - isLocked() - Queries if the lock is held by any thread
+
+- ReentrantLock Fairness
+  - ReentrantLock(true);
+  - May reduce the throughput of the application, use when it is needed bcz lock acquisition take may longer.
+- LockInterruptibily() use case
+  - Watchdog for deadlock detection & recovery
+  
+```ruby
+// ReentrantLock.tryLock() return boolean
+if(lockObject.tryLock()){// if only true
+  try{
+    use(resource);
+    ...
+  } finally{
+    lockObject.unlcok();
+  }
+} else {...}
+
+```
+
+
+
+
