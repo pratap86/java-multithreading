@@ -186,6 +186,37 @@ if(lockObject.tryLock()){// if only true
 
 ```
 
+- ReentrantReadWriteLock use case
+  - Synchronized & ReentrantLock do not allow multiple readers to access a shared resource concurrently.
+  - when read operations are predominant(present as the strongest or main element)
+  - multiple threads can aquire the readLock.
+  - readLock internally keeps count of how many reader threads are holding at given moment.
+  - Only a single thread allow to lock a writeLock.
+  - Mutual Exclusion between readers & writers.
+    - If a writeLock is acquired, no thread can acquire the a readLock.
+    - If at least one thread holds a readLock, no thread can acquire a writeLock.
+
+```ruby
+ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+Lock readLock = rwLock.readLock();
+Lock writeLock = rwLock.writeLock();
+
+writeLock.lock();
+try{
+  modifySharedResource();
+} finally {
+  writeLock.unlock();
+}
+...
+...
+readLock.lock();
+try{
+  readFromSharedResources();
+} finally {
+  readLock.unlock();
+}
+```
+
 
 
 
