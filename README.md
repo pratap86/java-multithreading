@@ -217,6 +217,24 @@ try{
 }
 ```
 
+## Semaphore
+  - Introduction
+    - Can be used to restrict the number of "users" to a perticulat resource or group of resources.
+    - Unlike the locks that allow only one "user" per resource
+    - The Semaphore can restrict any given number of users to a resource
+    - Inter-thread - Semaphore as condition var
+      - Calling the acquire() on a Semaphore is equivalent to checking the condition "Is Number of permits > 0?"
+      - If the condition is not met - thread A goes to sleep until another thread changes the semaphore's state.
+      - when thread B calls the release() method, thread A wakes up.
+      - Thread A checks the condition "Is Number of permits > 0?"
+        - If it is, thread A continues to the next instruction
+      - Condition variable is always associated with lock
+      - 
+  - Binary Semaphores
+  - Semaphore VS Locks
+    - Any thread can release a semaphore(no ownership).
+  - Producer Consumer(Inter Thread COmmunication) using Semaphore
+
 
 
 
