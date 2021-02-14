@@ -236,5 +236,11 @@ try{
   - Producer Consumer(Inter Thread COmmunication) using Semaphore
 
 
+## Parallel & Asynchronous Programming
 
+|Concurency|Parallelism|
+|---|---|
+|A concept where two or more tasks can run simultaneously|A concept where two or more tasks are literally running in parallel|
+|can be implemented in single or multiple cores|only be implemented in a multi-core machine|
+|is about correctly and efficiently controlling access to shared resource|is about using more resources to access the result faster|
 
