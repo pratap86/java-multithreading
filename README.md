@@ -238,6 +238,8 @@ try{
 
 ## Parallel & Asynchronous Programming
 
+  - use gradle, lombook, Annotation Processor
+
 |Concurency|Parallelism|
 |---|---|
 |A concept where two or more tasks can run simultaneously|A concept where two or more tasks are literally running in parallel|
