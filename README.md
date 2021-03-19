@@ -1,6 +1,24 @@
 # Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce and Parallelization
 
+### Threads API
+
+  - Threads are basically used to offload the blocking tasks as background task.
+  - Allow developer to write the asynchronous style of code.
+  - <b>Thread Limitations</b>;
+    - create the thread
+    - start the thread
+    - join the thread
+    - Threads are expensive, threads have its own runtime-stack, memory registers and more.
+    - Thread Pool was created specially to solve above limitations.
+
+### ExecutorService
+  - Asynchronous Task Execution Engine
+  - This enables coarse-grained task based parallelism.
+  - <b>Working of ExecutorService</b>
+  - Client<Future>, ExecutorService(WorkQueue<BlockingQueue>, CompletionQueue & ThreadPool)
+  - any new task put in to WorkQueue, thread came from ThreadPool, pick the task from WorkQueue & process it and put it into CompletionQueue while its processing is done.
+
 ## Thread Termination - Why & When
   - Thread consumes resources
     - Memory & Kernel resources
