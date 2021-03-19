@@ -15,7 +15,7 @@ import com.pratap.service.ReviewService;
  */
 public class ProductServiceUsingThread {
 	
-    private ProductInfoService productInfoService;
+	private ProductInfoService productInfoService;
     private ReviewService reviewService;
 
     public ProductServiceUsingThread(ProductInfoService productInfoService, ReviewService reviewService) {
@@ -23,18 +23,27 @@ public class ProductServiceUsingThread {
         this.reviewService = reviewService;
     }
 
-    public Product retrieveProductDetails(String productId) {
+    public Product retrieveProductDetails(String productId) throws InterruptedException {
         stopWatch.start();
 
-        ProductInfo productInfo = productInfoService.retrieveProductInfo(productId); // blocking call
-        Review review = reviewService.retrieveReviews(productId); // blocking call
+        ProductInfoRunnbale productInfoRunnable = new ProductInfoRunnbale(productId);
+        Thread productThread = new Thread(productInfoRunnable);
+        
+        ReviewRunnbale reviewRunnable = new ReviewRunnbale(productId);
+        Thread reviewThread = new Thread(reviewRunnable);
+        
+        productThread.start();
+        reviewThread.start();
+        
+        productThread.join();
+        reviewThread.join();
 
         stopWatch.stop();
         log("Total Time Taken : "+ stopWatch.getTime());
-        return new Product(productId, productInfo, review);
+        return new Product(productId, productInfoRunnable.getProductInfo(), reviewRunnable.getReview());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         ProductInfoService productInfoService = new ProductInfoService();
         ReviewService reviewService = new ReviewService();
@@ -44,4 +53,41 @@ public class ProductServiceUsingThread {
         log("Product is " + product);
 
     }
+    
+    private class ProductInfoRunnbale implements Runnable {
+
+    	private ProductInfo productInfo;
+    	private String productId;
+    	
+    	public ProductInfoRunnbale(String productId) {
+    		this.productId = productId;
+    	}
+		@Override
+		public void run() {
+
+			productInfo = productInfoService.retrieveProductInfo(productId);
+		}
+		public ProductInfo getProductInfo() {
+			return productInfo;
+		}
+	}
+    
+    private class ReviewRunnbale implements Runnable {
+
+    	private String productId;
+    	private Review review;
+    	
+		public ReviewRunnbale(String productId) {
+			this.productId = productId;
+		}
+
+		@Override
+		public void run() {
+			review = reviewService.retrieveReviews(productId);
+		}
+
+		public Review getReview() {
+			return review;
+		}
+	}
 }
