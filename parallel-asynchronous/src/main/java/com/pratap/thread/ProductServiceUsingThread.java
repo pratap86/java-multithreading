@@ -1,21 +1,24 @@
-package com.pratap.service;
+package com.pratap.thread;
+
+import static com.pratap.util.CommonUtil.stopWatch;
+import static com.pratap.util.LoggerUtil.log;
 
 import com.pratap.domain.Product;
 import com.pratap.domain.ProductInfo;
 import com.pratap.domain.Review;
-import static com.pratap.util.CommonUtil.stopWatch;
-import static com.pratap.util.LoggerUtil.log;
+import com.pratap.service.ProductInfoService;
+import com.pratap.service.ReviewService;
 /**
  * 
  * @author Pratap Narayan
  *
  */
-public class ProductService {
+public class ProductServiceUsingThread {
 	
     private ProductInfoService productInfoService;
     private ReviewService reviewService;
 
-    public ProductService(ProductInfoService productInfoService, ReviewService reviewService) {
+    public ProductServiceUsingThread(ProductInfoService productInfoService, ReviewService reviewService) {
         this.productInfoService = productInfoService;
         this.reviewService = reviewService;
     }
@@ -35,7 +38,7 @@ public class ProductService {
 
         ProductInfoService productInfoService = new ProductInfoService();
         ReviewService reviewService = new ReviewService();
-        ProductService productService = new ProductService(productInfoService, reviewService);
+        ProductServiceUsingThread productService = new ProductServiceUsingThread(productInfoService, reviewService);
         String productId = "ABC123";
         Product product = productService.retrieveProductDetails(productId);
         log("Product is " + product);
