@@ -1,24 +1,6 @@
 # Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce and Parallelization
 
-### Threads API
-
-  - Threads are basically used to offload the blocking tasks as background task.
-  - Allow developer to write the asynchronous style of code.
-  - <b>Thread Limitations</b>;
-    - create the thread
-    - start the thread
-    - join the thread
-    - Threads are expensive, threads have its own runtime-stack, memory registers and more.
-    - Thread Pool was created specially to solve above limitations.
-
-### ExecutorService
-  - Asynchronous Task Execution Engine
-  - This enables coarse-grained task based parallelism.
-  - <b>Working of ExecutorService</b>
-  - Client<Future>, ExecutorService(WorkQueue<BlockingQueue>, CompletionQueue & ThreadPool)
-  - any new task put in to WorkQueue, thread came from ThreadPool, pick the task from WorkQueue & process it and put it into CompletionQueue while its processing is done.
-
 ## Thread Termination - Why & When
   - Thread consumes resources
     - Memory & Kernel resources
@@ -264,5 +246,44 @@ try{
 |can be implemented in single or multiple cores|only be implemented in a multi-core machine|
 |is about correctly and efficiently controlling access to shared resource|is about using more resources to access the result faster|
 
-  - Threads, Futures and ForkJoin Framework limitations.
+
+## Threads, Futures and ForkJoin Framework limitations.
+
+### Threads API
+
+  - Threads are basically used to offload the blocking tasks as background task.
+  - Allow developer to write the asynchronous style of code.
+  - <b>Thread Limitations</b>;
+    - create the thread
+    - start the thread
+    - join the thread
+    - Threads are expensive, threads have its own runtime-stack, memory registers and more.
+    - Thread Pool was created specially to solve above limitations.
+
+### ExecutorService
+  - Asynchronous Task Execution Engine
+  - This enables coarse-grained task based parallelism.
+  - <b>Working of ExecutorService</b>
+  - Client<Future>, ExecutorService(WorkQueue<BlockingQueue>, CompletionQueue & ThreadPool)
+  - any new task put in to WorkQueue, thread came from ThreadPool, pick the task from WorkQueue & process it and put it into CompletionQueue while its processing is done.
+
+### Fork/Join Framework
+  - Introduced as part of Java7
+  - An extension of ExecutorService
+  - Fork/Join framework is designed to acheive Data Parallelism
+  - Executor Service is designed to achieve to Task based Parallelism
+
+### what is Data Parallelism?
+  - Data Parallelism is a concept where a given `Task` is recursively split in to `SubTasks` until it reaches it least possible size & execute those tasks in parallel.
+  - Basically it uses the divide and conquer approach.
+
+### ForkJoin Pool
+  - Client submit the ForkJoin task to sharedWorkQueue & each and every threads in Double Ended Work Queue(deck) continuosly poll the shared work queue for the new task, and task is taken by one of the thread in deck, the task in deck always processed in LIFO(Last In First Out) order, and task is further divided in to sub tasks, WorkStealing is a concept where the other threads in the pool check each other work queue for task. Once task is executed, result shared to the client.
+
+### ForkJoin Task
+  - ForkJoin task represents part of the data and its computation.
+  - Type of tasks to submit to ForkJoin Pool,
+    - ForkJoinTask
+      - RecursiveTask -> task that returns a value
+      - RecursiveAction -> task that does not return a value 
 
