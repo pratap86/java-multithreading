@@ -10,6 +10,8 @@ import com.pratap.domain.checkout.CheckoutStatus;
 
 import static com.pratap.util.CommonUtil.startTimer;
 import static com.pratap.util.CommonUtil.timeTaken;
+import static java.util.stream.Collectors.summingDouble;
+import static com.pratap.util.LoggerUtil.log;
 
 public class CheckoutService {
 
@@ -38,7 +40,27 @@ public class CheckoutService {
 			return new CheckoutResponse(CheckoutStatus.FAILURE, priceValidationList);
 		}
 
+		Double finalPrice = calculateFinalPriceWithReduce(cart);
+		log("checkout compleated & final price is "+finalPrice);
 		timeTaken();
-		return new CheckoutResponse(CheckoutStatus.SUCCESS);
+		return new CheckoutResponse(CheckoutStatus.SUCCESS, finalPrice);
+	}
+
+	private Double calculateFinalPrice(Cart cart) {
+
+		return cart.getCartItemList()
+				.parallelStream()
+				.map(cartItem -> cartItem.getQuantity() * cartItem.getRate())
+//				.collect(summingDouble(Double::doubleValue));
+				.mapToDouble(Double::doubleValue)
+				.sum();
+	}
+	
+	private Double calculateFinalPriceWithReduce(Cart cart) {
+
+		return cart.getCartItemList()
+				.parallelStream()
+				.map(cartItem -> cartItem.getQuantity() * cartItem.getRate())
+				.reduce(0.0, Double::sum);
 	}
 }
