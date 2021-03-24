@@ -11,14 +11,18 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 import com.pratap.util.DataSet;
-
-public class StringTransFormUsingForkJoinRecursive extends RecursiveTask<List<String>>{
+/**
+ * Transform String through ForkJoin, improve the performance
+ * @author Pratap Narayan
+ *
+ */
+public class ForkJoinUsingRecursive extends RecursiveTask<List<String>>{
 
 	private static final long serialVersionUID = 6907759632193519531L;
 	
 	private List<String> inputList;
 	
-	public StringTransFormUsingForkJoinRecursive(List<String> inputList) {
+	public ForkJoinUsingRecursive(List<String> inputList) {
 		this.inputList = inputList;
 	}
 
@@ -31,7 +35,7 @@ public class StringTransFormUsingForkJoinRecursive extends RecursiveTask<List<St
 		List<String> names = DataSet.nameList();
 		
 		ForkJoinPool forkJoinPool = new ForkJoinPool();
-		StringTransFormUsingForkJoinRecursive forkJoinRecursive = new StringTransFormUsingForkJoinRecursive(names);
+		ForkJoinUsingRecursive forkJoinRecursive = new ForkJoinUsingRecursive(names);
 		resultList = forkJoinPool.invoke(forkJoinRecursive);//task added to the shared queue
 		
 		stopWatch.stop();
@@ -44,9 +48,18 @@ public class StringTransFormUsingForkJoinRecursive extends RecursiveTask<List<St
 		return name.length()+" - "+name;
 	}
 
+	/**
+	 * Actual Fork & Join happens here, ie
+	 * <blockquote>
+	 * 1. split the data in to least possible small chunks<br>
+	 * 2. process them separatly<br>
+	 * 3. join them<br>
+	 * 4. return the joined result to the caller
+	 * </blockquote>
+	 */
 	@Override
 	protected List<String> compute() {
-		
+		//condition for break the recursion
 		if(inputList.size() <= 1) {
 			List<String> resultList = new ArrayList<>();
 			inputList.forEach(name -> resultList.add(addNameLengthTransform(name)));
@@ -55,7 +68,8 @@ public class StringTransFormUsingForkJoinRecursive extends RecursiveTask<List<St
 
 		int midpoint = inputList.size()/2;
 		
-		ForkJoinTask<List<String>> leftInputList =  new StringTransFormUsingForkJoinRecursive(inputList.subList(0, midpoint)).fork();
+		ForkJoinTask<List<String>> leftInputList =  new ForkJoinUsingRecursive(inputList.subList(0, midpoint)).fork();
+		//update the inputList, ie other side of list from midpoint to inputList size
 		inputList = inputList.subList(midpoint, inputList.size());
 		List<String> rightResult = compute();// recursion happens
 		
