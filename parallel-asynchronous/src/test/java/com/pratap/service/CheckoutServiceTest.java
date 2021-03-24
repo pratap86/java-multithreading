@@ -1,13 +1,14 @@
 package com.pratap.service;
 import static com.pratap.util.LoggerUtil.log;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 import com.pratap.domain.checkout.CheckoutResponse;
 import com.pratap.domain.checkout.CheckoutStatus;
 import com.pratap.util.DataSet;
+import static com.pratap.util.CommonUtil.stopWatchReset;
 
 class CheckoutServiceTest {
 	
@@ -19,7 +20,7 @@ class CheckoutServiceTest {
 		log("Number Of cores : "+Runtime.getRuntime().availableProcessors());
 	}
 	
-	@Test
+//	@Test
 	void testCheckoutWith4Items() {
 
 		CheckoutResponse checkoutResponse = checkoutService.checkout(DataSet.createCart(4));
@@ -29,6 +30,7 @@ class CheckoutServiceTest {
 	@Test
 	void testCheckoutWith7Items() {
 
+		stopWatchReset();
 		CheckoutResponse checkoutResponse = checkoutService.checkout(DataSet.createCart(7));
 		assertEquals(CheckoutStatus.FAILURE, checkoutResponse.getCheckoutStatus());
 	}

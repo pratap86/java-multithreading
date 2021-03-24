@@ -1,16 +1,16 @@
 package com.pratap.parallelstream;
 
-import java.util.ArrayList;
+import static com.pratap.util.LoggerUtil.log;
+
 import java.util.stream.Collectors;
 
 import com.pratap.util.DataSet;
-import static com.pratap.util.LoggerUtil.log;
 
 public class CollectVsReduce {
 	// collect return mutable object
 	public static String collect() {
 		
-		System.out.println(DataSet.nameList().stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
+//		System.out.println(DataSet.nameList().stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
 		return DataSet.nameList()
 				.stream()
 				.collect(Collectors.joining());

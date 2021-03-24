@@ -22,6 +22,7 @@ class ParallelStreamExampleTest {
 	void testStringTransform() {
 
 		List<String> nameList = DataSet.nameList();
+		stopWatchReset();
 		startTimer();
 		List<String> resultList = parallelStreamExample.stringTransform(nameList);
 		timeTaken();
