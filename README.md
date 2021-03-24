@@ -285,5 +285,16 @@ try{
   - Type of tasks to submit to ForkJoin Pool,
     - ForkJoinTask
       - RecursiveTask -> task that returns a value
-      - RecursiveAction -> task that does not return a value 
+      - RecursiveAction -> task that does not return a value
 
+### ParallelStreams - How it works?
+  - parallelStream()
+    - Split the data in to chunks, This is done using Spliterators. For ArrayList Spliterator is ArrayListSpliterator
+      - Each & every collection has a different Spliterator implementation
+      - Performance differ based on the implementation 
+    - Execute the data chunks
+      - Split & Execute phase run parallel
+    - Combine the data chunks
+      - combine the executed results in to final result
+      - terminal operations
+      - uses collect & reduce functions
