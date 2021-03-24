@@ -1,5 +1,5 @@
 # Multithreading
-Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce and Parallelization
+Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce, Parallelization, ParallelStream, ParallelStream - Under the Hood - Spliterator, CompletableFuture 
 
 ## Thread Termination - Why & When
   - Thread consumes resources
