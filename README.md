@@ -329,7 +329,8 @@ try{
       - Number of threads can go up or down based on the need
     - Message Driven(4)
       - Asynchronous computations intract with each other through messages in a event driven style
-      - 
+
+
 #### CompletableFuture API divided in to 3 categories
   - Factory Methods
     - Initiate asynchronous computation
@@ -337,4 +338,8 @@ try{
     - Chain asynchronous computation
   - Exception Methods
     - Handle exceptions in an Asynchronous Computation
+
+|`Factory Methods`|`Description`|`Completion Stage Methods`|`Description`|`Exception Methods`|`Description`|
+|---|---|---|---|---|---|
+|`supplyAsync()`|Initiate aynchronous computation<br>Initiate a <b>Supplier</b>Functional Interface<br>Returns CompleatableFuture(T)()|`thenAccept()`|Chain asynchronous computation<br>Input is <b>Consumer</b> Functional Interface<br>Consume the result of the previous<br>Returns CompleatableFuture(void)|||
     
