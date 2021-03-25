@@ -298,3 +298,43 @@ try{
       - combine the executed results in to final result
       - terminal operations
       - uses collect & reduce functions
+  - <b>Common ForkJoin Pool</b>
+    - used by Parallel Stream & CompletableFuture
+    - CompletableFuture have options to use a User-defined ThreadPools
+    - Common ForkJoin Pool is shared by whole process.
+    - There is a way to look in to parallelism & threads involved
+      - <b>ForkJoinPool.getCommonPoolParallelism()</b>
+
+  - Modifting Default parallelism
+    - Default value is Number of cores in your machine - 1.
+    - System.setProperty("java.util.concurrent.ForkJoinPool.common.parallelism", "100"); OR
+    - -Djava.util.concurrent.ForkJoinPool.common.parallelism=100
+
+  - When use & Not to use the parallelStream
+    - use when split & combine is faster like wrt ArrayList, not in case of LinkedList
+    - AutoBoxing & UnBoxing
+
+### CompletableFuture
+  - Introduced in JDK 1.8
+  - An Asynchronous Reactive Finctional Programming API
+  - Asynchronous computation in Functional Style
+  - CompleatableFutures API is created to solve the limitations of Future API
+#### CompletableFuture & Reactive Programming
+  - A reactive programming have 4 features
+    - Responsive(1)
+      - Call returns immediately and the response will be sent when its available
+    - Resilient(2)
+      - Exception OR Error won't crash the app or code
+    - Elastic(3)
+      - Number of threads can go up or down based on the need
+    - Message Driven(4)
+      - Asynchronous computations intract with each other through messages in a event driven style
+      - 
+#### CompletableFuture API divided in to 3 categories
+  - Factory Methods
+    - Initiate asynchronous computation
+  - Completion Stage Methods
+    - Chain asynchronous computation
+  - Exception Methods
+    - Handle exceptions in an Asynchronous Computation
+    
