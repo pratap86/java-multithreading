@@ -52,6 +52,7 @@ class ProductServiceUsingCompletableFutureTest {
 	
 	@Test
 	void testRetrieveProductDetailsWithInventoryService() {
+		stopWatchReset();
 		String productId = "ABC123";
 		Product product = psucf.retrieveProductDetailsWithInventoryService(productId);
 
@@ -65,6 +66,7 @@ class ProductServiceUsingCompletableFutureTest {
 	
 	@Test
 	void retrieveProductDetailsWithInventoryServiceWithCompletableFuture() {
+		stopWatchReset();
 		String productId = "ABC123";
 		Product product = psucf.retrieveProductDetailsWithInventoryServiceWithCompletableFuture(productId);
 
