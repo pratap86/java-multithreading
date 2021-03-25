@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import com.pratap.domain.Product;
 import com.pratap.service.ProductInfoService;
 import com.pratap.service.ReviewService;
+import static com.pratap.util.CommonUtil.stopWatchReset;
 
 class ProductServiceUsingCompletableFutureTest {
 
@@ -23,6 +24,7 @@ class ProductServiceUsingCompletableFutureTest {
 
 	@Test
 	void testRetrieveProductDetails() {
+		stopWatchReset();
 		String productId = "ABC123";
 
 		Product retrieveProductDetails = psucf.retrieveProductDetails(productId);
