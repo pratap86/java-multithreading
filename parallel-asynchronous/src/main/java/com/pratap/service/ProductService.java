@@ -5,8 +5,13 @@ import com.pratap.domain.ProductInfo;
 import com.pratap.domain.Review;
 import static com.pratap.util.CommonUtil.stopWatch;
 import static com.pratap.util.LoggerUtil.log;
-
+/**
+ * 
+ * @author Pratap Narayan
+ *
+ */
 public class ProductService {
+	
     private ProductInfoService productInfoService;
     private ReviewService reviewService;
 
