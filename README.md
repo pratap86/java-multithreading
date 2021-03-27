@@ -345,4 +345,12 @@ try{
 |||`thenApply()`|Transform the data from one form to another<br>Input is <br>Function</br>functional interface<br>Returns CompletableFuture(T)|||
 |||`thenCombine()`|Used to combine Independent CompletableFuture<br>Takes two arguments, CompletionStage & BiFunction<br>client -> Service -> service1 & service2 & these are independent call<br>Returns a CompletableFuture|||
 |||`thenCompose()`|Transform the data from one form to another<br>Input is Function functional Interface<br>Returns CompletableFuture|||
+
+#### Exception Handling In CompletableFuture
+  - CompletableFuture API has functional style of handling exceptions
+  - Three options are available;
+    - handle()
+    - exceptionally()
+    - whenComplete()
+    - <b>Remark</b>: handle & exceptionally are catch the exception & recover while whenComplete only catch the exception & does not recover
     
