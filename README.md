@@ -344,5 +344,5 @@ try{
 |`supplyAsync()`|Initiate aynchronous computation<br>Initiate a <b>Supplier</b>Functional Interface<br>Returns CompleatableFuture(T)()|`thenAccept()`|Chain asynchronous computation<br>Input is <b>Consumer</b> Functional Interface<br>Consume the result of the previous<br>Returns CompleatableFuture(void)|||
 |||`thenApply()`|Transform the data from one form to another<br>Input is <br>Function</br>functional interface<br>Returns CompletableFuture(T)|||
 |||`thenCombine()`|Used to combine Independent CompletableFuture<br>Takes two arguments, CompletionStage & BiFunction<br>client -> Service -> service1 & service2 & these are independent call<br>Returns a CompletableFuture|||
-|||`thenCompose()`|Transform the data from one form to another<br>Input is Finction functional Interface<br>Returns CompletableFuture|||
+|||`thenCompose()`|Transform the data from one form to another<br>Input is Function functional Interface<br>Returns CompletableFuture|||
     
