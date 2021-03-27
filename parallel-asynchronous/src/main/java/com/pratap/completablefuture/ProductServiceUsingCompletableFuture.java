@@ -94,8 +94,21 @@ public class ProductServiceUsingCompletableFuture {
         			productInfo.setProductOptions(updateInventoryWithCompletableFuture(productInfo));
         			return productInfo;
         		});
-        CompletableFuture<Review> cfReview = CompletableFuture.supplyAsync(() -> reviewService.retrieveReviews(productId));
-        Product product = cfProductInfo.thenCombine(cfReview, (productInfo, review) -> new Product(productId, productInfo, review)).join();
+        
+        CompletableFuture<Review> cfReview = CompletableFuture
+        		.supplyAsync(() -> reviewService.retrieveReviews(productId))
+        		.exceptionally(exception -> {
+        			log("Handled the exception in review service "+exception);
+        			return new Review(0, 0.0);
+        		});
+        
+        Product product = cfProductInfo
+        		.thenCombine(cfReview, (productInfo, review) -> new Product(productId, productInfo, review))
+        		.whenComplete((product1, exception) -> {
+        			log("Inside whenComplete : "+product1+" and the exception is : "+exception);
+        		})
+        		.join();
+        
         stopWatch.stop();
         log("Total Time Taken : "+ stopWatch.getTime());
         return product;
@@ -106,6 +119,10 @@ public class ProductServiceUsingCompletableFuture {
 		List<CompletableFuture<ProductOption>> productOptionList = productInfo.getProductOptions().stream().map(productOption -> {
 			
 			return CompletableFuture.supplyAsync(() -> inventoryService.retrieveInventory(productOption))
+					.exceptionally(exception -> {
+						log("Exception in Inventory service : "+exception);
+						return new Inventory(1);
+					})
 					.thenApply(inventory -> {
 						productOption.setInventory(inventory);
 						return productOption;
