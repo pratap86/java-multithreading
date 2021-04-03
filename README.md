@@ -353,4 +353,13 @@ try{
     - exceptionally()
     - whenComplete()
     - <b>Remark</b>: handle & exceptionally are catch the exception & recover while whenComplete only catch the exception & does not recover
+
+### allOf - Dealing with Multiple CompletableFutures
+  - static method that's part of CompletableFuture API
+  - use when you are dealing with multiple CompleatableFuture
+
+### anyOf - Dealing with Multiple CompletableFutures
+  - static method that's part of CompletableFuture API
+  - use when you are dealing with retrieving data from miltiple data source
+  - anyOf pick the fastest one only.
     
