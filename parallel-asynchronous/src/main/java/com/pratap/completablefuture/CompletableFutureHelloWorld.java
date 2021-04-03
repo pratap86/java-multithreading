@@ -1,11 +1,13 @@
 package com.pratap.completablefuture;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import com.pratap.service.HelloWorldService;
 import static com.pratap.util.CommonUtil.startTimer;
 import static com.pratap.util.CommonUtil.timeTaken;
 import static com.pratap.util.CommonUtil.delay;
+import static com.pratap.util.LoggerUtil.log;
 
 /**
  * Intract with {@link com.pratap.service.HelloWorldService}
@@ -85,5 +87,43 @@ public class CompletableFutureHelloWorld {
 	public CompletableFuture<String> helloWorldWithThenCompose(){
 		return CompletableFuture.supplyAsync(hws::hello)
 				.thenCompose(previous -> hws.worldFuture(previous));
+	}
+	
+	public String anyOf() {
+		
+		// db call
+		CompletableFuture<String> dbCompletableFuture = CompletableFuture.supplyAsync(() -> {
+			delay(1000);
+			log("response from db call");
+			return "Hello DB";
+		});
+		
+		// rest call
+		CompletableFuture<String> restCompletableFuture = CompletableFuture.supplyAsync(() -> {
+			delay(2000);
+			log("response from rest call");
+			return "Hello REST";
+		});
+		
+		// soap call
+		CompletableFuture<String> soapCompletableFuture = CompletableFuture.supplyAsync(() -> {
+			delay(3000);
+			log("response from SOAP call");
+			return "Hello SOAP";
+		});
+		
+		List<CompletableFuture<String>> completableFutures = List.of(dbCompletableFuture, restCompletableFuture, soapCompletableFuture);
+		
+		CompletableFuture<Object> anyOf = CompletableFuture.anyOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()]));
+		
+		String result = (String)anyOf.thenApply(completableFuture -> {
+			
+			if(completableFuture instanceof String) {
+				return completableFuture;
+			}
+			return null;
+		}).join();
+		
+		return result;
 	}
 }
