@@ -7,7 +7,6 @@ import java.util.concurrent.CompletableFuture;
 import org.junit.jupiter.api.Test;
 
 import com.pratap.service.HelloWorldService;
-import static com.pratap.util.CommonUtil.stopWatchReset;
 
 class CompletableFutureHelloWorldTest {
 
@@ -26,21 +25,18 @@ class CompletableFutureHelloWorldTest {
 
 	@Test
 	void testHelloWorldWithTwoAsyncCalls() {
-		stopWatchReset();
 		String actual = cfhw.helloWorldWithTwoAsyncCalls();
 		assertEquals("HELLO WORLD!", actual);
 	}
 	
 	@Test
 	void testHelloWorldWithThreeAsyncCalls() {
-		stopWatchReset();
 		String actual = cfhw.helloWorldWithThreeAsyncCalls();
 		assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE!", actual);
 	}
 	
 	@Test
 	void testHelloWorldWithFourAsyncCalls() {
-		stopWatchReset();
 		String actual = cfhw.helloWorldWithFourAsyncCalls();
 		assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE! BYE COMPLETABLEFUTURE!", actual);
 	}
@@ -49,5 +45,11 @@ class CompletableFutureHelloWorldTest {
 	void testHelloWorldWithThenCompose() {
 		CompletableFuture<String> completableFuture = cfhw.helloWorldWithThenCompose();
 		completableFuture.thenAccept(result -> assertEquals("hello world!", result)).join();
+	}
+	
+	@Test
+	void testAnyOf() {
+		String actual = cfhw.anyOf();
+		assertEquals("Hello DB", actual);
 	}
 }

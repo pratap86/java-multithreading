@@ -1,6 +1,7 @@
 package com.pratap.apiclient;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -28,4 +29,28 @@ class GitHubJobsClientTest {
 		gitHubPositions.forEach(Assertions::assertNotNull);
 	}
 
+	@Test
+    void invokeGithubJobsApi_withMultiplePageNumbers_CF() {
+
+        //given
+        String description = "Java";
+        List<Integer> pageNumbers= List.of(1,2,3);
+        //when
+        List<GitHubPosition> gitHubPositionList  = gitHubJobsClient.invokeGithubjobsAPI_withMultiplePageNumbers(pageNumbers, description);
+
+        //then
+        assertTrue(gitHubPositionList.size()>0);
+    }
+
+    @Test
+    void invokeGithubJobsApi_withMultiplePageNumbers() {
+
+        //given
+        String description = "Java";
+        List<Integer> pageNumbers= List.of(1,2,3);
+        //when
+        List<GitHubPosition> gitHubPositionList  = gitHubJobsClient.invokeGithubjobsAPI_withMultiplePageNumbers_withCompletableFutureAllOf(pageNumbers, description);
+        //then
+        assertTrue(gitHubPositionList.size()>0);
+    }
 }
