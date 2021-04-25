@@ -1,4 +1,4 @@
-package com.pratap.fundamentals.thread.creation;
+package com.pratap.multithreading.fundamentals.thread.creation;
 
 import java.util.ArrayList;
 import java.util.List;
