@@ -28,10 +28,11 @@ public class NumberGenerator {
 	 * @param result = number % 3
 	 */
 	public void printNumber(int result) {
+		
 		synchronized (this) {
-			
 			while (number < totalNumbersInSequence -1) {
 				// only permits the particular thread prints the particular number in sequence
+				// ie if result 1, then thread-1 going to print the numbers, result 2 -> thread-2, result 0 -> thread 3
 				while (number % numberOfThreads != result) {
 					
 					try {
