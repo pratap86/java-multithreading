@@ -1,4 +1,4 @@
-package com.pratap.fundamentals.thread.coordination;
+package com.pratap.multithreading.thread.coordination;
 
 public class ThreadInterruptedMain {
 

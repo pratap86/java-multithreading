@@ -1,4 +1,4 @@
-package com.pratap.concurrency.deadlock;
+package com.pratap.multithreading.deadlock;
 
 import java.util.Random;
 /**
