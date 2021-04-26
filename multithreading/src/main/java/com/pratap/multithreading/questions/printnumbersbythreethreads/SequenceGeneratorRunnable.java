@@ -3,16 +3,16 @@ package com.pratap.multithreading.questions.printnumbersbythreethreads;
 public class SequenceGeneratorRunnable implements Runnable {
 
 	private NumberGenerator numberGenerator;
-	private int result;
+	private int remainder;
 	
-	public SequenceGeneratorRunnable(NumberGenerator numberGenerator, int result) {
+	public SequenceGeneratorRunnable(NumberGenerator numberGenerator, int remainder) {
 		this.numberGenerator = numberGenerator;
-		this.result = result;
+		this.remainder = remainder;
 	}
 
 	@Override
 	public void run() {
-		numberGenerator.printNumber(result);
+		numberGenerator.printNumber(remainder);
 	}
 
 }

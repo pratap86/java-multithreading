@@ -1,14 +1,45 @@
 package com.pratap.multithreading.questions.printnumbersbythreethreads;
 
 /**
- * <blockquote>
- * Thread1	Thread2	Thread3
- * 	  1		  2		  3
- * 	  4		  5		  6
- * 	  7		  8		  9
- * 	  10..
- * 	  % 3=1	  %3=2	  %3=0
- * </blockquote>
+ * <table><tbody>
+ * <tr>
+ * 	<td>Thread1</td>
+ * 	<td>Thread2</td>
+ * 	<td>Thread3</td>
+ * </tr>
+ * <tr>
+ * 	<td>1</td>
+ * 	<td>2</td>
+ * 	<td>3</td>
+ * </tr>
+ * <tr>
+ * 	<td>4</td>
+ * 	<td>5</td>
+ * 	<td>6</td>
+ * </tr>
+ * <tr>
+ * 	<td>7</td>
+ * 	<td>8</td>
+ * 	<td>9</td>
+ * </tr>
+ * <tr>
+ * 	<td>10</td>
+ * 	<td>..</td>
+ * 	<td>..</td>
+ * </tr>
+ * <tr>
+ * 	<td>%3=1</td>
+ * 	<td>%3=2</td>
+ * 	<td>%3=0</td>
+ * </tr>
+ * </tbody>
+ * </table>
+ * 
+ * <blockquote><pre>
+ * If number%3==1 then Thread1 will print the number and increment it else will go in the wait state.
+ * If number%3==2 then Thread2 will print the number and increment it else will go in the wait state.
+ * If number%3==0 then Thread3 will print the number and increment it else will go in the wait state.
+ * </pre></blockquote>
  * @author Pratap Narayan
  *
  */
@@ -25,15 +56,15 @@ public class NumberGenerator {
 	
 	/**
 	 * 
-	 * @param result = number % 3
+	 * @param remainder = number % 3
 	 */
-	public void printNumber(int result) {
+	public void printNumber(int remainder) {
 		
 		synchronized (this) {
 			while (number < totalNumbersInSequence -1) {
 				// only permits the particular thread prints the particular number in sequence
 				// ie if result 1, then thread-1 going to print the numbers, result 2 -> thread-2, result 0 -> thread 3
-				while (number % numberOfThreads != result) {
+				while (number % numberOfThreads != remainder) {
 					
 					try {
 						wait();
