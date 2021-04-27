@@ -1,6 +1,12 @@
 # Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce, Parallelization, ParallelStream, ParallelStream - Under the Hood - Spliterator, <b>CompletableFuture, Spring WebClient</b>
 
+#### Inter-Thread Communication
+  <p> Inter-thread communication allows synchronized threads to communicate with each other using a set of methods.<br>
+The methods used are wait, notify, and notifyAll, which are all inherited from the Object class.<br>
+Wait() causes the current thread to wait indefinitely until some other thread calls notify() or notifyAll() on the same object. We can call notify() to waking up threads that are waiting for access to this object’s monitor.
+</p>
+
 ## Thread Termination - Why & When
   - Thread consumes resources
     - Memory & Kernel resources
