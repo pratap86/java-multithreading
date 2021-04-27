@@ -5,6 +5,9 @@ import java.util.concurrent.Executors;
 
 import org.junit.jupiter.api.Test;
 
+import com.pratap.multithreading.questions.interthreadcommunication.printnumbersbythreethreads.NumberGenerator;
+import com.pratap.multithreading.questions.interthreadcommunication.printnumbersbythreethreads.SequenceGeneratorRunnable;
+
 class SequenceGeneratorRunnableTest {
 
 	private static final int TOTAL_NO_IN_SEQUENCE = 10;

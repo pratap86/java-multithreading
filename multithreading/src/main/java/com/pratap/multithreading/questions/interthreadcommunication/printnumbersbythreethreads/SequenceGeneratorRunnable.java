@@ -1,4 +1,4 @@
-package com.pratap.multithreading.questions.printnumbersbythreethreads;
+package com.pratap.multithreading.questions.interthreadcommunication.printnumbersbythreethreads;
 
 public class SequenceGeneratorRunnable implements Runnable {
 
