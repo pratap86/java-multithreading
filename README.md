@@ -9,7 +9,7 @@ Wait() causes the current thread to wait indefinitely until some other thread ca
 
 #### Programming Questions over Inter-Thread Communication
   - Three threads print the numbers like t1 -> 1, t2 -> 2, t3-> 3 and again t1-> 4, t2-> 5, t3-> 6, ...
-  - Print even and odd Number alternatively
+  - Print even and odd Number alternatively using threads & Semaphore.
 
 ## Thread Termination - Why & When
   - Thread consumes resources
