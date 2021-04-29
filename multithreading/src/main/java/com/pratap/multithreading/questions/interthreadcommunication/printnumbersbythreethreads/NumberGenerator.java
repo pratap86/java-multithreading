@@ -63,7 +63,7 @@ public class NumberGenerator {
 		synchronized (this) {
 			while (number < totalNumbersInSequence -1) {
 				// only permits the particular thread prints the particular number in sequence
-				// ie if result 1, then thread-1 going to print the numbers, result 2 -> thread-2, result 0 -> thread 3
+				// ie if remainder 1, then thread-1 going to print the numbers, remainder 2 -> thread-2, remainder 0 -> thread 3
 				while (number % numberOfThreads != remainder) {
 					
 					try {
