@@ -1,6 +1,16 @@
 # Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce, Parallelization, ParallelStream, ParallelStream - Under the Hood - Spliterator, <b>CompletableFuture, Spring WebClient</b>
 
+#### Process VS Thread
+|Comparison Basis|Process|Thread|
+|---|---|---|
+|`Basic`|An executing program|A small part of a Process|
+|`Address Space`|each prcess has its own separate address space|All the threads of a process share the same address space|
+|`Communication`|Communication between two processes is expensive and limited|Communication between two threads is less expensive as compared to process.|
+|`Switching`|Context switching from one process to another process is expensive.|Context switching from one thread to another thread is less expensive as compared to process.|
+|`Components`|A process has its own address space, global variables, signal handlers, open files, child processes, accounting information.|A thread has its own register, state, stack, program counter.|
+|`Control`|Process-based multitasking is not under the control of Java.|Thread-based multitasking is under the control of Java.|
+
 ### Inter-Thread Communication
   <p> Inter-thread communication allows synchronized threads to communicate with each other using a set of methods.<br>
 The methods used are wait, notify, and notifyAll, which are all inherited from the Object class.<br>
