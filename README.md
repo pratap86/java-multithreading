@@ -237,7 +237,13 @@ try{
 }
 ```
 
-## Semaphore
+## java.util.concurrent Package
+
+### BlockingQueue
+
+### PriorityBlockingQueue
+
+### Semaphore
   - Introduction
     - Can be used to restrict the number of "users" to a perticulat resource or group of resources.
     - Unlike the locks that allow only one "user" per resource
@@ -254,6 +260,10 @@ try{
   - Semaphore VS Locks
     - Any thread can release a semaphore(no ownership).
   - Producer Consumer(Inter Thread COmmunication) using Semaphore
+
+### CountDownLatch
+
+### CyclicBarrier
 
 
 ## Parallel & Asynchronous Programming
