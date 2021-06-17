@@ -1,4 +1,4 @@
-package com.pratap.concurrency.challenges;
+package com.pratap.multithreading.challenges;
 
 public class DataRaceMain {
 

@@ -1,4 +1,4 @@
-package com.pratap.fundamentals.thread.creation;
+package com.pratap.multithreading.fundamentals.thread.creation;
 /**
  * Thread Creation - MultiExecutor
  * @author Pratap Narayan
