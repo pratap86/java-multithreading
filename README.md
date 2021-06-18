@@ -21,7 +21,13 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
 1. NEW - When we instantiate a thread. It is in this state until we start it by start()
 2. RUNNABLE - After we have started the thread by start(). The thread is executing its task in this state by calling the run() method.
 3. WAITING - A RUNNABLE thread becomes in WAITING state by calling wait() or sleep(), for example for another thread to finish its task, When another thread signals then this thread goes back to the runnable state.
-4. DEAD - After thread finishes its task. 
+4. DEAD - After thread finishes its task.
+
+#### Daemon Threads and User Thread
+- When a java program starts then one thread begins running immediately(main thread) - its start the main thread.
+- We can create the child threads from the main thread. The main thread is the last thread to finish execution because it performs various shutdown operations.
+- Daemon threads are intended as helper threads(for example Garbage collector)
+- Daemon threads are terminated by the JVM when all other worker threads are terminated(finish execution)
 
 #### Process VS Thread
 |Comparison Basis|Process|Thread|
