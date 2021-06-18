@@ -1,6 +1,28 @@
 # Multithreading
 Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms, Fork-Join Framework, MapReduce, Parallelization, ParallelStream, ParallelStream - Under the Hood - Spliterator, <b>CompletableFuture, Spring WebClient</b>
 
+#### Multithreading
+- Multithreading is the ability of the CPU to execute multiple processes or threads concurrently.
+- Both Process and Threads are independent sequence of execution.
+
+#### Process
+- A process is an instance of program exection
+- eg. When you open a web browser or any software - these are distinct processes
+- The OS assigns distinct register, program counter, stack memory and heap memory to every single process.
+- In Java, we can create the process with the help of ProcessBuilder class.
+- Every single process has unique PID, memory usage
+
+#### Threads
+- A thread is a 'Light Weight Process'.
+- It is a unit of execution within a given process(a process may have several threads)
+- Each thread in a process share the memory and resources.
+
+#### Thread Life Cycle
+1. NEW - When we instantiate a thread. It is in this state until we start it by start()
+2. RUNNABLE - After we have started the thread by start(). The thread is executing its task in this state by calling the run() method.
+3. WAITING - A RUNNABLE thread becomes in WAITING state by calling wait() or sleep(), for example for another thread to finish its task, When another thread signals then this thread goes back to the runnable state.
+4. DEAD - After thread finishes its task. 
+
 #### Process VS Thread
 |Comparison Basis|Process|Thread|
 |---|---|---|
