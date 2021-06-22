@@ -29,6 +29,37 @@ Multithreading, Executor Framework, Concurrent Collections, Parallel Algorithms,
 - Daemon threads are intended as helper threads(for example Garbage collector)
 - Daemon threads are terminated by the JVM when all other worker threads are terminated(finish execution)
 
+#### Memory Management
+- The typical difference between thread and process is that  threads(of the same process) run in a shared memory space, while processes run in separate memory spaces.
+
+#### Stack Memory
+- The local variables and method arguments as well as method calls are stored on the stack.
+- By default Stack memory is fast
+- Stack memory is small
+
+#### Every thread has its own stack memory and cache but all threads share the heap memory(Shared memory space)
+
+#### Heap Memory
+- Objects are stored in the Heap memory and live as long as it is referenced from somewhere in the application.
+- By default Heap memory is slow bcz its take more time to access the object stored in the heap memory.
+- Heal memory is larger
+
+#### The main purpose of synchronization is the sharing of resources without interference using mutual exclusion.
+
+``` ruby
+public void increment(){
+  counter++;// reading the number from memory
+            // increment the value
+            // writing number to the memory
+            // return with the value
+}
+
+These operation seems to be atomic in the sense that requires only a single operation but this is not the case
+-> It take some time to finish with increment operation
+-> During this procedure another thread may call this method as well with the original counter value.
+```
+
+
 #### Process VS Thread
 |Comparison Basis|Process|Thread|
 |---|---|---|
