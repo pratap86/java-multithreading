@@ -59,6 +59,17 @@ These operation seems to be atomic in the sense that requires only a single oper
 -> During this procedure another thread may call this method as well with the original counter value.
 ```
 
+#### Intrinsic Lock (Monitor)
+``` ruby
+public synchronize void increament(){
+    counter++;
+}
+```
+
+- Every object in java has a so-called intrinsic lock
+- A thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and release the intrinsic lock when it's done with them.
+- Because of the monitor lock: no two threads can execute the same synchronized method at the same time.
+-  
 
 #### Process VS Thread
 |Comparison Basis|Process|Thread|
