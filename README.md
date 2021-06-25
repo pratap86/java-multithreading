@@ -87,6 +87,8 @@ The methods used are wait, notify, and notifyAll, which are all inherited from t
 Wait() causes the current thread to wait indefinitely until some other thread calls notify() or notifyAll() on the same object. We can call notify() to waking up threads that are waiting for access to this object’s monitor.
 </p>
 
+#### With the help of wait and notify Threads can release and reaquire the intrinsic lock.
+
 #### Programming Questions over Inter-Thread Communication
   - Three threads print the numbers like t1 -> 1, t2 -> 2, t3-> 3 and again t1-> 4, t2-> 5, t3-> 6, ...
   - Print even and odd Number alternatively using threads & Semaphore.
