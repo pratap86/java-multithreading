@@ -1,5 +1,9 @@
 package com.pratap.multithreading.questions.printnumbersbythreethreads;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * <blockquote>
  * Thread1	Thread2	Thread3
@@ -17,6 +21,8 @@ public class NumberGenerator {
 	private int number = 1;
 	private int numberOfThreads;
 	private int totalNumbersInSequence;
+	private Lock lock = new ReentrantLock();
+	private Condition condition = lock.newCondition();
 	
 	public NumberGenerator(int numberOfThreads, int totalNumbersInSequence) {
 		this.numberOfThreads = numberOfThreads;
@@ -28,22 +34,28 @@ public class NumberGenerator {
 	 * @param result = number % 3
 	 */
 	public void printNumber(int result) {
-		synchronized (this) {
-			
-			while (number < totalNumbersInSequence -1) {
-				// only permits the particular thread prints the particular number in sequence
-				while (number % numberOfThreads != result) {
-					
-					try {
-						wait();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+//		synchronized (this) {
+			try {
+				lock.lock();
+				while (number < totalNumbersInSequence -1) {
+					// only permits the particular thread prints the particular number in sequence
+					while (number % numberOfThreads != result) {
+
+						try {
+//							wait();
+							condition.await();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
+
+					System.out.println(Thread.currentThread().getName()+" "+number++);
+//					notifyAll();
+					condition.signalAll();
 				}
-				
-				System.out.println(Thread.currentThread().getName()+" "+number++);
-				notifyAll();
+			} finally {
+				lock.unlock();
 			}
-		}
+//		}
 	}
 }

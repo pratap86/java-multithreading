@@ -30,3 +30,7 @@ dependencies {
 	// mockito
 	compile 'org.mockito:mockito-core:'+ "${mockitoCoreVersion}"
 }
+
+test {
+	useJUnitPlatform()
+}
