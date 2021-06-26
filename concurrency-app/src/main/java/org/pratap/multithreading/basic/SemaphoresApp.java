@@ -12,8 +12,8 @@ import java.util.concurrent.Semaphore;
  *         - acquire() -> if permit is available than taken it 
  *         - release() -> adds a permit 
  *         -: semaphores
- *         just keeps a count of the number available - new Semaphore(int
- *         permits, boolean fairness)
+ *         just keeps a count of the number available -
+ *         new Semaphore(int permits, boolean fairness)
  *
  */
 
