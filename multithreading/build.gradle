@@ -32,11 +32,3 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-
-task myTask{
-	
-	description = 'This is my custom message'
-	doLast{
-		println 'Hello from Gradle'
-	}
-}
