@@ -170,7 +170,9 @@ Wait() causes the current thread to wait indefinitely until some other thread ca
     - The core of the problem is non atomic operations performed on the shared resource.
     - Synchronized solves both Race Condition and Data Race. But has a performance penality.
     - Volatile solves all data races by guaranteeing order.
-    
+
+#### DeadLock occurs when two or more threads wait forever for a lock or resource held by another threads.
+#### Livelocked threads are unalbe to make further progress. However the threads are not blocked: they are simply too busy responding to each other to resume work. 
   ## Locking Strategies & Deadlocks
    - Fine-Grained Locking - use synchronized at block-level 
    - Coarse-Grained Locking - use synchronized at method-level
@@ -308,30 +310,54 @@ try{
   readLock.unlock();
 }
 ```
+## Multithreading Concepts
+
+### Volatile instruct the CPU to read the value from heap ie main memory and don't cache the given variable.
+### Deadlock and Livelock
+### Atomic variables
+### Semaphore
+
+#### with the help of semaphores, you can allow/permit only certain number of threads can access the shared resource.
+
+``` ruby
+private Semaphore semaphore = new Semaphore(permits=5, true);
+--
+semaphore.acquire();
+
+--
+semaphore.release();
+```
+
+#### Semaphores are simple variables (or abstract data types) that are used for controlling access to a common resource.
+#### It is a record of how many units of a particular resource are available. We havve to wait until a unit of the resource become available again.
+#### Two types of Semaphore
+- Counting Semaphore : allows an arbitrary resource count
+- Binary Semaphore : semaphores that are restricted to the values 0 and 1 
+     
+#### Semaphore VS Locks
+- Any thread can release a semaphore(no ownership).
+- Unlike the locks that allow only one "user" per resource
+- The Semaphore can restrict any given number of users to a resource
+
+#### Semaphores use case (Identical Student study rooms in a Library)
+- suppuse a library has 10 identical study rooms(it can be used by a single student at a time)
+- student must request the study room from the front desk
+- if no rooms are free: student have to wait for rooms to be available again so until someone relinquishes a given study room
+- when a student finshed using the room, the student must return to the front desk and indicate that one room has become free
+#### Producer Consumer(Inter Thread COmmunication) using Semaphore
+
+### Executor Framework
+#### Executors : There are several types of executors
+- SingleThreadExecutor
+- FixedThreadPool(n)
+- CachedThreadPool
+- ScheduleExecutor
 
 ## java.util.concurrent Package
 
 ### BlockingQueue
 
 ### PriorityBlockingQueue
-
-### Semaphore
-  - Introduction
-    - Can be used to restrict the number of "users" to a perticulat resource or group of resources.
-    - Unlike the locks that allow only one "user" per resource
-    - The Semaphore can restrict any given number of users to a resource
-    - Inter-thread - Semaphore as condition var
-      - Calling the acquire() on a Semaphore is equivalent to checking the condition "Is Number of permits > 0?"
-      - If the condition is not met - thread A goes to sleep until another thread changes the semaphore's state.
-      - when thread B calls the release() method, thread A wakes up.
-      - Thread A checks the condition "Is Number of permits > 0?"
-        - If it is, thread A continues to the next instruction
-      - Condition variable is always associated with lock
-      - 
-  - Binary Semaphores
-  - Semaphore VS Locks
-    - Any thread can release a semaphore(no ownership).
-  - Producer Consumer(Inter Thread COmmunication) using Semaphore
 
 ### CountDownLatch
 
