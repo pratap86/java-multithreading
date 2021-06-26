@@ -27,10 +27,16 @@ dependencies {
     // JUnit5 Jupitar
     testImplementation 'org.junit.jupiter:junit-jupiter-api:'+"${junitJupiterVersion}"
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:'+"${junitJupiterVersion}"
-	// mockito
-	compile 'org.mockito:mockito-core:'+ "${mockitoCoreVersion}"
 }
 
 test {
 	useJUnitPlatform()
+}
+
+task myTask{
+	
+	description = 'This is my custom message'
+	doLast{
+		println 'Hello from Gradle'
+	}
 }
