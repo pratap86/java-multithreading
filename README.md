@@ -349,9 +349,16 @@ semaphore.release();
 ### Executor Framework
 #### Executors : There are several types of executors
 - SingleThreadExecutor
+  - This executor has single thread so we can execute processes in a sequential manner. Every process is executed by a new thread. 
 - FixedThreadPool(n)
+  - This is how we can create a thread pool with n threads. Usually n is the number of cores in the CPU.
+  - If there are more tasks than n than these tasks are stored with a LinkedBlockingQueue data structure. 
 - CachedThreadPool
+  - The number of threads are not bounded: If all the threads are busy executing some tasks and a new task comes the pool will create and add a new thread to the executor.
+  - If a thread remains idle for 60 secs then it is removed.
+  - It is used for short parallel tasks  
 - ScheduleExecutor
+  - We can execute a given operation at regular intervals or we can use this executor if we wish to delay a certain task. 
 
 ## java.util.concurrent Package
 
