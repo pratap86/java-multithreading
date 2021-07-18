@@ -451,7 +451,7 @@ semaphore.release();
 
 ### CompletableFuture
   - Introduced in JDK 1.8
-  - An Asynchronous Reactive Finctional Programming API
+  - An Asynchronous Reactive Functional Programming API
   - Asynchronous computation in Functional Style
   - CompleatableFutures API is created to solve the limitations of Future API
 #### CompletableFuture & Reactive Programming
