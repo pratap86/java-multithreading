@@ -377,7 +377,7 @@ semaphore.release();
 
 |Concurency|Parallelism|
 |---|---|
-|A concept where two or more tasks can run simultaneously|A concept where two or more tasks are literally running in parallel|
+|A concept where two or more tasks can virtually run simultaneously.<br>They take advantage of CPU time-slicing feature of operating system where each task run part of its task and then go to waiting state. When first task is in waiting state, CPU is assigned to second task to complete it’s part of task.|A concept where two or more tasks are literally running in parallel|
 |can be implemented in single or multiple cores|only be implemented in a multi-core machine|
 |is about correctly and efficiently controlling access to shared resource|is about using more resources to access the result faster|
 
