@@ -9,7 +9,6 @@ import java.util.concurrent.CompletableFuture;
 import org.junit.jupiter.api.Test;
 
 import com.pratap.domain.Product;
-import com.pratap.domain.ProductOption;
 import com.pratap.service.InventoryService;
 import com.pratap.service.ProductInfoService;
 import com.pratap.service.ReviewService;
@@ -23,7 +22,7 @@ class ProductServiceUsingCompletableFutureTest {
 	
 	private InventoryService inventoryService = new InventoryService();
 
-	ProductServiceUsingCompletableFuture psucf = new ProductServiceUsingCompletableFuture(productInfoService,
+	ProductServiceUsingCompletableFuture productServiceUsingCompletableFuture = new ProductServiceUsingCompletableFuture(productInfoService,
 			reviewService, inventoryService);
 
 	@Test
@@ -31,7 +30,7 @@ class ProductServiceUsingCompletableFutureTest {
 		stopWatchReset();
 		String productId = "ABC123";
 
-		Product retrieveProductDetails = psucf.retrieveProductDetails(productId);
+		Product retrieveProductDetails = productServiceUsingCompletableFuture.retrieveProductDetails(productId);
 
 		assertAll(() -> assertNotNull(retrieveProductDetails),
 				() -> assertTrue(retrieveProductDetails.getProductInfo().getProductOptions().size() > 0),
@@ -42,7 +41,7 @@ class ProductServiceUsingCompletableFutureTest {
 	void testRetrieveProductDetailsWithStandardApproach() {
 
 		String productId = "ABC123";
-		CompletableFuture<Product> completableFuture = psucf.retrieveProductDetailsWithStandardApproach(productId);
+		CompletableFuture<Product> completableFuture = productServiceUsingCompletableFuture.retrieveProductDetailsWithStandardApproach(productId);
 		completableFuture.thenAccept(result -> {
 			assertAll(() -> assertNotNull(result),
 					() -> assertTrue(result.getProductInfo().getProductOptions().size() > 0),
@@ -54,7 +53,7 @@ class ProductServiceUsingCompletableFutureTest {
 	void testRetrieveProductDetailsWithInventoryService() {
 		stopWatchReset();
 		String productId = "ABC123";
-		Product product = psucf.retrieveProductDetailsWithInventoryService(productId);
+		Product product = productServiceUsingCompletableFuture.retrieveProductDetailsWithInventoryService(productId);
 
 		assertAll(() -> assertNotNull(product),
 				() -> assertTrue(product.getProductInfo().getProductOptions().size() > 0),
@@ -68,7 +67,7 @@ class ProductServiceUsingCompletableFutureTest {
 	void retrieveProductDetailsWithInventoryServiceWithCompletableFuture() {
 		stopWatchReset();
 		String productId = "ABC123";
-		Product product = psucf.retrieveProductDetailsWithInventoryServiceWithCompletableFuture(productId);
+		Product product = productServiceUsingCompletableFuture.retrieveProductDetailsWithInventoryServiceWithCompletableFuture(productId);
 
 		assertAll(() -> assertNotNull(product),
 				() -> assertTrue(product.getProductInfo().getProductOptions().size() > 0),

@@ -8,36 +8,36 @@ import static com.pratap.util.CommonUtil.timeTaken;
 import static com.pratap.util.CommonUtil.delay;
 
 /**
- * Intract with {@link com.pratap.service.HelloWorldService}
+ * Interact with {@link com.pratap.service.HelloWorldService}
  * 
  * @author Pratap Narayan
  *
  */
 public class CompletableFutureHelloWorld {
 
-	private HelloWorldService hws;
+	private HelloWorldService helloWorldService;
 
-	public CompletableFutureHelloWorld(HelloWorldService hws) {
-		this.hws = hws;
+	public CompletableFutureHelloWorld(HelloWorldService helloWorldService) {
+		this.helloWorldService = helloWorldService;
 	}
 
 	public CompletableFuture<String> helloWorld() {
 
-		return CompletableFuture.supplyAsync(hws::helloWorld)// as supplyAsync executed, release the main thread, & run
+		return CompletableFuture.supplyAsync(helloWorldService::helloWorld)// as supplyAsync executed, release the main thread, & run
 																// this in common fork-join pool
 				.thenApply(String::toUpperCase);
 	}
 
 	public String helloWorldWithBasicApproach() {
-		String hello = hws.hello();// 1-sec
-		String world = hws.world();// 1-sec
+		String hello = helloWorldService.hello();// 1-sec
+		String world = helloWorldService.world();// 1-sec
 		return hello + world;// 1 + 1 = 2 secs
 	}
 
 	public String helloWorldWithTwoAsyncCalls() {
 		startTimer();
-		CompletableFuture<String> hello = CompletableFuture.supplyAsync(hws::hello);
-		CompletableFuture<String> world = CompletableFuture.supplyAsync(hws::world);
+		CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
+		CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
 
 		String hw = hello.thenCombine(world, (h, w) -> h + w).thenApply(String::toUpperCase).join();
 		timeTaken();
@@ -46,8 +46,8 @@ public class CompletableFutureHelloWorld {
 
 	public String helloWorldWithThreeAsyncCalls() {
 		startTimer();
-		CompletableFuture<String> hello = CompletableFuture.supplyAsync(hws::hello);
-		CompletableFuture<String> world = CompletableFuture.supplyAsync(hws::world);
+		CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
+		CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
 		CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
 			delay(1000);
 			return " Hi CompletableFuture!";
@@ -62,8 +62,8 @@ public class CompletableFutureHelloWorld {
 
 	public String helloWorldWithFourAsyncCalls() {
 		startTimer();
-		CompletableFuture<String> hello = CompletableFuture.supplyAsync(hws::hello);
-		CompletableFuture<String> world = CompletableFuture.supplyAsync(hws::world);
+		CompletableFuture<String> hello = CompletableFuture.supplyAsync(helloWorldService::hello);
+		CompletableFuture<String> world = CompletableFuture.supplyAsync(helloWorldService::world);
 		CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
 			delay(1000);
 			return " Hi CompletableFuture!";
@@ -83,7 +83,7 @@ public class CompletableFutureHelloWorld {
 	}
 
 	public CompletableFuture<String> helloWorldWithThenCompose(){
-		return CompletableFuture.supplyAsync(hws::hello)
-				.thenCompose(previous -> hws.worldFuture(previous));
+		return CompletableFuture.supplyAsync(helloWorldService::hello)
+				.thenCompose(previous -> helloWorldService.worldFuture(previous));
 	}
 }
