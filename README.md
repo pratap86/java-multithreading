@@ -389,9 +389,9 @@ semaphore.release();
   - Threads are basically used to offload the blocking tasks as background task.
   - Allow developer to write the asynchronous style of code.
   - <b>Thread Limitations</b>;
-    - create the thread
-    - start the thread
-    - join the thread
+    - Manualy create the thread
+    - Manualy start the thread
+    - Manualy join the thread
     - Threads are expensive, threads have its own runtime-stack, memory registers and more.
     - Thread Pool was created specially to solve above limitations.
 
