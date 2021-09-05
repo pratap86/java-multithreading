@@ -7,19 +7,17 @@ import com.pratap.domain.checkout.Cart;
 import com.pratap.domain.checkout.CartItem;
 import com.pratap.domain.checkout.CheckoutResponse;
 import com.pratap.domain.checkout.CheckoutStatus;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import static com.pratap.util.CommonUtil.startTimer;
 import static com.pratap.util.CommonUtil.timeTaken;
-import static java.util.stream.Collectors.summingDouble;
-import static com.pratap.util.LoggerUtil.log;
 
+@Slf4j
+@AllArgsConstructor
 public class CheckoutService {
 
 	private PriceValidatorService priceValidatorService;
-
-	public CheckoutService(PriceValidatorService priceValidatorService) {
-		this.priceValidatorService = priceValidatorService;
-	}
 
 	/**
 	 * validate each cart item wrt price validator service
@@ -29,6 +27,7 @@ public class CheckoutService {
 	 */
 	public CheckoutResponse checkout(Cart cart) {
 
+		log.info("Executing checkout() with cart={}", cart);
 		startTimer();
 		List<CartItem> priceValidationList = cart.getCartItemList().parallelStream().map(cartItem -> {
 			boolean isCartItemInvalid = priceValidatorService.isCartItemInvalid(cartItem);
@@ -41,13 +40,14 @@ public class CheckoutService {
 		}
 
 		Double finalPrice = calculateFinalPriceWithReduce(cart);
-		log("checkout compleated & final price is "+finalPrice);
+		log.info("checkout completed & finalPrice={}", finalPrice);
 		timeTaken();
 		return new CheckoutResponse(CheckoutStatus.SUCCESS, finalPrice);
 	}
 
 	private Double calculateFinalPrice(Cart cart) {
 
+		log.info("Executing calculateFinalPrice() with cart={}", cart);
 		return cart.getCartItemList()
 				.parallelStream()
 				.map(cartItem -> cartItem.getQuantity() * cartItem.getRate())
@@ -58,6 +58,7 @@ public class CheckoutService {
 	
 	private Double calculateFinalPriceWithReduce(Cart cart) {
 
+		log.info("Executing calculateFinalPriceWithReduce() with cart={}", cart);
 		return cart.getCartItemList()
 				.parallelStream()
 				.map(cartItem -> cartItem.getQuantity() * cartItem.getRate())

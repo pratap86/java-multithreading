@@ -1,23 +1,13 @@
 package com.pratap.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
 public class Inventory {
 	
     private int count;
-    
-    public Inventory() {
-    	
-    }
 
-	public Inventory(int count) {
-		this.count = count;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-    
 }
