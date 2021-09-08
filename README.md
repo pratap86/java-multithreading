@@ -454,6 +454,7 @@ semaphore.release();
   - An Asynchronous Reactive Functional Programming API
   - Asynchronous computation in Functional Style
   - CompleatableFutures API is created to solve the limitations of Future API
+  - public class CompletableFuture implements Future<T>, CompletionStage<T>{}
 #### CompletableFuture & Reactive Programming
   - A reactive programming have 4 features
     - Responsive(1)
