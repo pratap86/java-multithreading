@@ -75,7 +75,7 @@ public synchronize void increament(){
 |Comparison Basis|Process|Thread|
 |---|---|---|
 |`Basic`|An executing program|A small part of a Process|
-|`Address Space`|each prcess has its own separate address space|All the threads of a process share the same address space|
+|`Address Space`|each process has its own separate address space|All the threads of a process share the same address space|
 |`Communication`|Communication between two processes is expensive and limited|Communication between two threads is less expensive as compared to process.|
 |`Switching`|Context switching from one process to another process is expensive.|Context switching from one thread to another thread is less expensive as compared to process.|
 |`Components`|A process has its own address space, global variables, signal handlers, open files, child processes, accounting information.|A thread has its own register, state, stack, program counter.|
